@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C5182E79-3447-4F38-992E-D039952532A6}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Paint</RootNamespace>
+    <AssemblyName>Paint</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CurrentEnum\DashStyleShape.cs" />
+    <Compile Include="CurrentEnum\EnumShape.cs" />
+    <Compile Include="Paint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Paint.Designer.cs">
+      <DependentUpon>Paint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Group.cs" />
+    <Compile Include="Model\PArc.cs" />
+    <Compile Include="Model\PCircle.cs" />
+    <Compile Include="Model\PEllipse.cs" />
+    <Compile Include="Model\PLine.cs" />
+    <Compile Include="Model\PPolygon.cs" />
+    <Compile Include="Model\PRectangle.cs" />
+    <Compile Include="Model\SelectFrame.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Model\Shape.cs" />
+    <Compile Include="SolvingFlicker\SolvingFlicker.cs" />
+    <EmbeddedResource Include="Paint.aa-DJ.resx">
+      <DependentUpon>Paint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Paint.aa.resx">
+      <DependentUpon>Paint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Paint.resx">
+      <DependentUpon>Paint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\group.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\ungroup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\ellipse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\pen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\polygon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\rounded-rectangle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\select.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\wheel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\color.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\circumflex-accent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\diagonal-line.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\dry-clean.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\Eraser.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\Zoom out.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\Zoom in.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\Solid.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\Dot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\dash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Image\Arc.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
