@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 namespace Paint
 {
     public abstract class Shape
-    {      
-        public PointF firstPoint { get; set; }
-        public PointF lastPoint { get; set; }
+    {
+        public PointF firstPoint;
+        public PointF lastPoint;
         public Color shapeColor { get; set; }
         public float widthPen { get; set; }
         public bool isDrawing { get; set; }
@@ -27,6 +27,8 @@ namespace Paint
         public abstract void Draw(Graphics myGp, Pen myPen);
         public abstract GraphicsPath GetPath { get; }
 
+        public abstract void ZoomIn();
+        public abstract void ZoomOut();
 
     }
 }

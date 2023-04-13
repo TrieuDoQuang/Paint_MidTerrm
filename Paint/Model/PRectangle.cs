@@ -122,5 +122,19 @@ namespace Paint.Model
             float height = Math.Abs(lastPoint.Y - firstPoint.Y);
             graphics.DrawRectangle(pen, x, y, width, height);
         }
+
+        public override void ZoomIn()
+        {
+            lastPoint.X += (lastPoint.X * (float)0.02);
+            lastPoint.Y += (lastPoint.Y * (float)0.02);
+            this.widthPen += widthPen * (float)0.15;
+        }
+
+        public override void ZoomOut()
+        {
+            lastPoint.X -= (lastPoint.X * (float)0.02);
+            lastPoint.Y -= (lastPoint.Y * (float)0.02);
+            this.widthPen -= widthPen * (float)0.12;
+        }
     }
 }

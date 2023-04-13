@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Reflection;
 
@@ -128,6 +129,93 @@ namespace Paint.Model
                 }
             }
             return false;
+        }
+
+        public override void ZoomIn()
+        {
+            List<PointF> tmp = new List<PointF>();
+            tmp.Add(pointsPoly[0]);
+            if (pointsPoly.Count() > 2)
+            {
+                for (int i = 1; i < pointsPoly.Count(); i++)
+                {
+                    float Dx1 = (float)(-pointsPoly[0].Y + pointsPoly[i].Y) / (pointsPoly[0].X - pointsPoly[i].X);
+                    if (i == 1)
+                    {
+                        PointF p2 = new PointF(pointsPoly[i].X + 3, pointsPoly[i].Y - (3 * Dx1));
+                        tmp.Add(p2);
+                    }
+                    else
+                    {
+                        float Dx2 = (float)(-pointsPoly[i - 1].Y + pointsPoly[i].Y) / (pointsPoly[i - 1].X - pointsPoly[i].X);
+                        float x = Dx2 * (-tmp[i - 1].X) - tmp[i - 1].Y + Dx1 * (pointsPoly[0].X) + pointsPoly[0].Y;
+                        x /= (Dx1 - Dx2);
+                        float y = -Dx1 * (x - pointsPoly[0].X) + pointsPoly[0].Y;
+                        PointF p2 = new PointF(x, y);
+                        tmp.Add(p2);
+                    }
+                }
+                for (int i = 0; i < pointsPoly.Count(); i++)
+                    pointsPoly[i] = tmp[i];
+            }
+            else
+            {
+                float Dx = (float)(-pointsPoly[0].Y + pointsPoly[1].Y) / (pointsPoly[0].X - pointsPoly[1].X);
+                PointF p2 = new PointF(pointsPoly[1].X + 3, pointsPoly[1].Y - (3 * Dx));
+                pointsPoly[1] = p2;
+            }
+            widthPen += 1;
+        }
+        public override void ZoomOut()
+        {
+            if (widthPen <= 2) return;
+            bool flag = true;
+            List<PointF> tmp = new List<PointF>();
+            tmp.Add(pointsPoly[0]);
+            if (pointsPoly.Count() > 2)
+            {
+                for (int i = 1; i < pointsPoly.Count(); i++)
+                {
+                    float Dx1 = (float)(-pointsPoly[0].Y + pointsPoly[i].Y) / (pointsPoly[0].X - pointsPoly[i].X);
+                    if (i == 1)
+                    {
+                        PointF p2 = new PointF(pointsPoly[i].X - 3, pointsPoly[i].Y + (3 * Dx1));
+                        float check = pointsPoly[i].X - 3 - pointsPoly[0].X;
+                        if (check > 5)
+                        {
+                            tmp.Add(p2);
+                            flag = true;
+                        }
+                        else
+                        {
+                            flag = false;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        float Dx2 = (float)(-pointsPoly[i - 1].Y + pointsPoly[i].Y) / (pointsPoly[i - 1].X - pointsPoly[i].X);
+                        float x = Dx2 * (-tmp[i - 1].X) - tmp[i - 1].Y + Dx1 * (pointsPoly[0].X) + pointsPoly[0].Y;
+                        x /= (Dx1 - Dx2);
+                        float y = -Dx1 * (x - pointsPoly[0].X) + pointsPoly[0].Y;
+                        PointF p2 = new PointF(x, y);
+                        tmp.Add(p2);
+                    }
+                }
+                if (flag == true)
+                    for (int i = 0; i < pointsPoly.Count(); i++)
+                        pointsPoly[i] = tmp[i];
+            }
+            else
+            {
+                if (pointsPoly[1].X - 10 - pointsPoly[0].X > 5)
+                {
+                    float Dx1 = (float)(-pointsPoly[0].Y + pointsPoly[1].Y) / (pointsPoly[0].X - pointsPoly[1].X);
+                    PointF p2 = new PointF(this.pointsPoly[1].X - 3, this.pointsPoly[1].Y + (3 * Dx1));
+                    pointsPoly[1] = p2;
+                }
+            }
+            widthPen -= 1;
         }
 
     }

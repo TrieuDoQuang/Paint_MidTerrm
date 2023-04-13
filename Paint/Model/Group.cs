@@ -290,5 +290,21 @@ namespace Paint.Model
                 return path;
             }
         }
+
+        public override void ZoomIn()
+        {
+            foreach(Shape shape in shapes)
+            {
+                shape.ZoomIn();
+            }
+        }
+
+        public override void ZoomOut()
+        {
+            foreach (Shape shape in shapes)
+            {
+                shape.ZoomOut();
+            }
+        }
     }
 }

@@ -403,10 +403,6 @@ namespace Paint
             }
         }
 
-        private void btnPencil_Click(object sender, EventArgs e)
-        {
-            PaintType = EnumShape.Pen;
-        }
         private void btnLine_Click(object sender, EventArgs e)
         {
             PaintType = EnumShape.Line;
@@ -525,8 +521,26 @@ namespace Paint
             }
             e.DrawFocusRectangle();
         }
+        private void btnPlus_Click(object sender, EventArgs e)
+        {
+            if (deleteShape != null)
+            {
+                deleteShape.ZoomIn();
+                plMain.Invalidate();
+            }
+            else
+                MessageBox.Show("Please select a shape before using this tool", "Notification");
 
-
-
+        }
+        private void btnSub_Click(object sender, EventArgs e)
+        {
+            if (deleteShape != null)
+            {
+                deleteShape.ZoomOut();
+                plMain.Invalidate();
+            }
+            else
+                MessageBox.Show("Please select a shape before using this tool", "Notification");
+        }
     }
 }

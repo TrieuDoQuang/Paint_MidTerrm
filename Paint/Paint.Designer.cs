@@ -313,6 +313,7 @@
             this.btnSub.Name = "btnSub";
             this.toolTip1.SetToolTip(this.btnSub, resources.GetString("btnSub.ToolTip"));
             this.btnSub.UseVisualStyleBackColor = true;
+            this.btnSub.Click += new System.EventHandler(this.btnSub_Click);
             // 
             // btnEraser
             // 
@@ -330,7 +331,7 @@
             this.btnPlus.Name = "btnPlus";
             this.toolTip1.SetToolTip(this.btnPlus, resources.GetString("btnPlus.ToolTip"));
             this.btnPlus.UseVisualStyleBackColor = true;
-            this.btnPlus.Click += new System.EventHandler(this.btnPencil_Click);
+            this.btnPlus.Click += new System.EventHandler(this.btnPlus_Click);
             // 
             // btnFill
             // 

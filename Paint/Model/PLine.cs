@@ -56,5 +56,40 @@ namespace Paint.Model
             firstPoint = new PointF(firstPoint.X + distance.X, firstPoint.Y + distance.Y);
             lastPoint = new PointF(lastPoint.X + distance.X, lastPoint.Y + distance.Y);
         }
+
+        public override void ZoomIn()
+        {
+            float Dx = (float)(-firstPoint.Y + lastPoint.Y) / (firstPoint.X - lastPoint.X);
+            if (Dx == 0)
+            {
+                Dx = (float)(-firstPoint.Y + lastPoint.Y) / (firstPoint.X - lastPoint.X);
+            }
+
+            if (lastPoint.X > firstPoint.X)
+            {
+                lastPoint = new PointF(lastPoint.X + 3, lastPoint.Y - (3 * Dx));
+            }
+            else
+            {
+                firstPoint = new PointF(firstPoint.X + 3, firstPoint.Y - (3 * Dx));
+            }
+            widthPen += 1;
+        }
+        public override void ZoomOut()
+        {
+            if (widthPen <= 2) return;
+
+            float Dx = (float)(-firstPoint.Y + lastPoint.Y) / (firstPoint.X - lastPoint.X);
+
+            if (lastPoint.X > firstPoint.X && lastPoint.X - firstPoint.X > 8)
+            {
+                lastPoint = new PointF(lastPoint.X - 3, lastPoint.Y + (3 * Dx));
+            }
+            else if (firstPoint.X - lastPoint.X > 8)
+            {
+                firstPoint = new PointF(firstPoint.X - 3, firstPoint.Y + (3 * Dx));
+            }
+            widthPen -= 1;
+        }
     }
 }

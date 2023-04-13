@@ -77,5 +77,20 @@ namespace Paint.Model
             firstPoint = new PointF(firstPoint.X + distance.X, firstPoint.Y + distance.Y);
             lastPoint = new PointF(lastPoint.X + distance.X, lastPoint.Y + distance.Y);
         }
+
+
+        public override void ZoomIn()
+        {
+            lastPoint.X += (lastPoint.X * (float)0.02);
+            lastPoint.Y += (lastPoint.Y * (float)0.02);
+            this.widthPen += widthPen * (float)0.15;
+        }
+
+        public override void ZoomOut()
+        {
+            lastPoint.X -= (lastPoint.X * (float)0.02);
+            lastPoint.Y -= (lastPoint.Y * (float)0.02);
+            this.widthPen -= widthPen * (float)0.12;
+        }
     }
 }
